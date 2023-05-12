@@ -9,8 +9,8 @@
 int main()
 {
 	// Generate triangles
-	SierpinskiGenerator generator(1024, 1024, 300, 300);
-	generator.generateTriangles(9);
+	SierpinskiGenerator generator(1024, 1024, 500, 300);
+	generator.generateTriangles(10);
 	std::vector<Triangle> triangles = generator.getTriangles();
 
 	// Convert triangles to SFML triangles (returns Vertex Arrays)

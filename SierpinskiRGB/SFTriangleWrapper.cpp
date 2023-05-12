@@ -19,6 +19,12 @@ SFTriangleWrapper::SFTriangleWrapper(Triangle triangle)
 		this->vertices[0].color = randomColour;
 		this->vertices[1].color = randomColour;
 		this->vertices[2].color = randomColour;
+
+		// Uncomment this for black and white theme
+		/*
+		this->vertices[0].color = sf::Color(255, 255, 255);
+		this->vertices[1].color = sf::Color(255, 255, 255);
+		this->vertices[2].color = sf::Color(255, 255, 255);*/
 	}
 	else
 	{
