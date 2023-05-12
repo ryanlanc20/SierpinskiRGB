@@ -131,12 +131,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Point2d.cpp" />
     <ClCompile Include="SFTriangleWrapper.cpp" />
     <ClCompile Include="SierpinskiGenerator.cpp" />
     <ClCompile Include="SierpinskiRGB.cpp" />
     <ClCompile Include="Triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Point2d.h" />
     <ClInclude Include="SFTriangleWrapper.h" />
     <ClInclude Include="SierpinskiGenerator.h" />
     <ClInclude Include="Triangle.h" />
