@@ -9,11 +9,8 @@
 int main()
 {
 	// Create triangle generator
-	std::vector<float> origin;
-	origin.push_back(300);
-	origin.push_back(300);
-	SierpinskiGenerator generator(1024, 1024, origin);
-	generator.generateTriangles(9);
+	SierpinskiGenerator generator(1024, 1024, 300, 300);
+	generator.generateTriangles(6);
 	
 	// Convert triangles to SFML triangles (returns Vertex Arrays)
 	std::vector<Triangle> triangles = generator.getTriangles();
@@ -41,12 +38,14 @@ int main()
 			}
 		}
 
+		
 		// Let's draw the triangles
 		window.clear(sf::Color::White);
 		for (sf::VertexArray triangle : drawableTriangles)
 		{
 			window.draw(triangle);
 		}
+
 		window.display();
 	}
 

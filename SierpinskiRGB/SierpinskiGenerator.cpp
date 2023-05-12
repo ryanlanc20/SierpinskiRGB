@@ -1,15 +1,14 @@
 #include "SierpinskiGenerator.h"
 
-SierpinskiGenerator::SierpinskiGenerator(float width, float height, std::vector<float> initialOrigin)
+SierpinskiGenerator::SierpinskiGenerator(float width, float height, float originX, float originY)
 {
 	this->width = width;
 	this->height = height;
-	this->initialOrigin = initialOrigin;
 
 	// Push first origin
 	std::vector<float> firstOrigin;
-	firstOrigin.push_back(initialOrigin.at(0));
-	firstOrigin.push_back(initialOrigin.at(1));
+	firstOrigin.push_back(originX);
+	firstOrigin.push_back(originY);
 
 	this->origins.push(firstOrigin);
 }
