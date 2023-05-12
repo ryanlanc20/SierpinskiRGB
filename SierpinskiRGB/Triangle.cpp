@@ -9,14 +9,14 @@ Triangle::Triangle(float height, float width, Point2d origin)
 	Point2d bottomRight(origin.getX() + (width / 4), origin.getY() + (height / 4));
 	Point2d top(origin.getX(), origin.getY() - (height / 4));
 
-	points.push_back(bottomLeft);
-	points.push_back(bottomRight);
-	points.push_back(top);
+	this->points.push_back(bottomLeft);
+	this->points.push_back(bottomRight);
+	this->points.push_back(top);
 }
 
 std::vector<Point2d> Triangle::getPoints()
 {
-	return points;
+	return this->points;
 }
 
 void Triangle::setColourToWhite()

@@ -31,7 +31,7 @@ void SierpinskiGenerator::generateTriangles(int maxDepth)
 	int widthCpy = this->width;
 	int heightCpy = this->height;
 
-	// Stores removed triangle origins until children origins have been discovered
+	// Stores removed triangle origins until child origins have been discovered
 	std::vector<Point2d> tmpOrigins;
 
 	int currentDepth = 0;
@@ -41,29 +41,29 @@ void SierpinskiGenerator::generateTriangles(int maxDepth)
 		tmpOrigins.clear();
 
 		// Build triangles for current level
-		while (origins.size() > 0)
+		while (this->origins.size() > 0)
 		{
 			// Get next origin
-			Point2d origin = origins.front();
-			origins.pop();
+			Point2d origin = this->origins.front();
+			this->origins.pop();
 			tmpOrigins.push_back(origin);
 			Triangle triangle(widthCpy, heightCpy, origin);
 			triangle.setColourToWhite();
-			triangles.push_back(triangle);
+			this->triangles.push_back(triangle);
 		}
 
 		// Get next origins
 		widthCpy /= 2;
 		heightCpy /= 2;
 
-		for (Point2d oldOrigin : tmpOrigins)
+		for (Point2d parentOrigin : tmpOrigins)
 		{
 			// Get next origins
-			for (Point2d newOrigin : getOrigins(widthCpy, heightCpy, oldOrigin))
+			for (Point2d childOrigin : getOrigins(widthCpy, heightCpy, parentOrigin))
 			{
-				origins.push(newOrigin);
-				Triangle triangle(widthCpy, heightCpy, newOrigin);
-				triangles.push_back(triangle);
+				this->origins.push(childOrigin);
+				Triangle triangle(widthCpy, heightCpy, childOrigin);
+				this->triangles.push_back(triangle);
 			}
 		}
 
