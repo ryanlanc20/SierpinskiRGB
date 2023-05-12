@@ -1,5 +1,6 @@
 #pragma once
 #include "Triangle.h"
+#include "Point2d.h"
 #include <vector>
 #include <queue>
 
@@ -13,7 +14,7 @@ public:
 private:
 	float width;
 	float height;
-	std::queue<std::vector<float>> origins;
+	std::queue<Point2d> origins;
 	std::vector<Triangle> triangles;
 };
 

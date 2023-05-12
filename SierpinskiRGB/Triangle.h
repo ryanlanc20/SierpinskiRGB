@@ -1,18 +1,19 @@
 #pragma once
+#include "Point2d.h"
 #include <iostream>
 #include <vector>
 
 class Triangle
 {
 public:
-	Triangle(float height, float width, std::vector<float> position);
-	std::vector<std::vector<float>> getPoints();
+	Triangle(float height, float width, Point2d position);
+	std::vector<Point2d> getPoints();
 	void setColourToBlack();
 	void setColourToWhite();
 	std::string getColour();
 
 private:
-	std::vector<std::vector<float>> points;
+	std::vector<Point2d> points;
 	std::string colour;
 };
 

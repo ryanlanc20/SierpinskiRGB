@@ -1,4 +1,5 @@
 #include "SierpinskiGenerator.h"
+#include "Point2d.h"
 
 SierpinskiGenerator::SierpinskiGenerator(float width, float height, float originX, float originY)
 {
@@ -6,37 +7,23 @@ SierpinskiGenerator::SierpinskiGenerator(float width, float height, float origin
 	this->height = height;
 
 	// Push first origin
-	std::vector<float> firstOrigin;
-	firstOrigin.push_back(originX);
-	firstOrigin.push_back(originY);
-
-	this->origins.push(firstOrigin);
+	this->origins.push(Point2d(originX, originY));
 }
 
-std::vector<std::vector<float>> getOrigins(float width, float height, std::vector<float> origin)
+std::vector<Point2d> getOrigins(float width, float height, Point2d origin)
 {
-		std::vector<std::vector<float>> origins;
+	std::vector<Point2d> origins;
 
-		// Top Midpoint
-		std::vector<float> topMidpoint;
-		topMidpoint.push_back(origin.at(0));
-		topMidpoint.push_back(origin.at(1) - (height / 4));
+	// Top midpoint
+	origins.push_back(Point2d(origin.getX(), origin.getY() - (height / 4)));
 
-		// Left Midpoint
-		std::vector<float> leftMidpoint;
-		leftMidpoint.push_back(origin.at(0) - (width / 4));
-		leftMidpoint.push_back(origin.at(1) + (height / 4));
+	// Left midpoint
+	origins.push_back(Point2d(origin.getX() - (width / 4), origin.getY() + (height / 4)));
 
-		// Right Midpoint
-		std::vector<float> rightMidpoint;
-		rightMidpoint.push_back(origin.at(0) + (width / 4));
-		rightMidpoint.push_back(origin.at(1) + (height / 4));
+	// Right midpoint
+	origins.push_back(Point2d(origin.getX() + (width / 4), origin.getY() + (height / 4)));
 
-		origins.push_back(topMidpoint);
-		origins.push_back(leftMidpoint);
-		origins.push_back(rightMidpoint);
-
-		return origins;
+	return origins;
 }
 
 void SierpinskiGenerator::generateTriangles(int maxDepth)
@@ -45,7 +32,7 @@ void SierpinskiGenerator::generateTriangles(int maxDepth)
 	int heightCpy = this->height;
 
 	// Stores removed triangle origins until children origins have been discovered
-	std::vector<std::vector<float>> tmpOrigins;
+	std::vector<Point2d> tmpOrigins;
 
 	int currentDepth = 0;
 	while (currentDepth < maxDepth)
@@ -57,7 +44,7 @@ void SierpinskiGenerator::generateTriangles(int maxDepth)
 		while (origins.size() > 0)
 		{
 			// Get next origin
-			std::vector<float> origin = origins.front();
+			Point2d origin = origins.front();
 			origins.pop();
 			tmpOrigins.push_back(origin);
 			Triangle triangle(widthCpy, heightCpy, origin);
@@ -69,10 +56,10 @@ void SierpinskiGenerator::generateTriangles(int maxDepth)
 		widthCpy /= 2;
 		heightCpy /= 2;
 
-		for (std::vector<float> oldOrigin : tmpOrigins)
+		for (Point2d oldOrigin : tmpOrigins)
 		{
 			// Get next origins
-			for (std::vector<float> newOrigin : getOrigins(widthCpy, heightCpy, oldOrigin))
+			for (Point2d newOrigin : getOrigins(widthCpy, heightCpy, oldOrigin))
 			{
 				origins.push(newOrigin);
 				Triangle triangle(widthCpy, heightCpy, newOrigin);

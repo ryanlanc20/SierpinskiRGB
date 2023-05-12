@@ -1,26 +1,20 @@
 #include "Triangle.h"
+#include "Point2d.h"
 #include <iostream>
 #include <vector>
-Triangle::Triangle(float height, float width, std::vector<float> origin)
+
+Triangle::Triangle(float height, float width, Point2d origin)
 {
-	std::vector<float> bottomLeft;
-	bottomLeft.push_back(origin.at(0) - (width / 4));
-	bottomLeft.push_back(origin.at(1) + (height / 4));
-
-	std::vector<float> bottomRight;
-	bottomRight.push_back(origin.at(0) + (width / 4));
-	bottomRight.push_back(origin.at(1) + (height / 4));
-
-	std::vector<float> top;
-	top.push_back(origin.at(0));
-	top.push_back(origin.at(1) - (height / 4));
+	Point2d bottomLeft(origin.getX() - (width / 4), origin.getY() + (height / 4));
+	Point2d bottomRight(origin.getX() + (width / 4), origin.getY() + (height / 4));
+	Point2d top(origin.getX(), origin.getY() - (height / 4));
 
 	points.push_back(bottomLeft);
 	points.push_back(bottomRight);
 	points.push_back(top);
 }
 
-std::vector<std::vector<float>> Triangle::getPoints()
+std::vector<Point2d> Triangle::getPoints()
 {
 	return points;
 }

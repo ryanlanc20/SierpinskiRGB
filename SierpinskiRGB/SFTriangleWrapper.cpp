@@ -1,3 +1,4 @@
+#include "Point2d.h"
 #include "SFTriangleWrapper.h"
 
 SFTriangleWrapper::SFTriangleWrapper(Triangle triangle)
@@ -6,10 +7,10 @@ SFTriangleWrapper::SFTriangleWrapper(Triangle triangle)
 	vertices = sf::VertexArray(sf::Triangles, 3);
 
 	// Add vertices to array
-	std::vector<std::vector<float>> points = triangle.getPoints();
-	vertices[0].position = sf::Vector2f(points.at(0).at(0), points.at(0).at(1));
-	vertices[1].position = sf::Vector2f(points.at(1).at(0), points.at(1).at(1));
-	vertices[2].position = sf::Vector2f(points.at(2).at(0), points.at(2).at(1));
+	std::vector<Point2d> points = triangle.getPoints();
+	vertices[0].position = sf::Vector2f(points.at(0).getX(), points.at(0).getY());
+	vertices[1].position = sf::Vector2f(points.at(1).getX(), points.at(1).getY());
+	vertices[2].position = sf::Vector2f(points.at(2).getX(), points.at(2).getY());
 
 	if (triangle.getColour() == "white")
 	{

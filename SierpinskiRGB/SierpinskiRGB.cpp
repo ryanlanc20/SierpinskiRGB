@@ -8,13 +8,14 @@
 
 int main()
 {
-	// Create triangle generator
+	// Generate triangles
 	SierpinskiGenerator generator(1024, 1024, 300, 300);
-	generator.generateTriangles(6);
-	
-	// Convert triangles to SFML triangles (returns Vertex Arrays)
+	generator.generateTriangles(9);
 	std::vector<Triangle> triangles = generator.getTriangles();
+
+	// Convert triangles to SFML triangles (returns Vertex Arrays)
 	std::vector<sf::VertexArray> drawableTriangles;
+
 	for (Triangle triangle : triangles)
 	{
 		drawableTriangles.push_back(SFTriangleWrapper(triangle).getVertexArray());
